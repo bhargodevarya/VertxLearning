@@ -1,5 +1,6 @@
 package com.module;
 
+import com.VerticleRegistry;
 import com.api.WebVerticle;
 import com.dao.DummyDAOLayer;
 import com.dao.MockDBClient;
@@ -7,12 +8,15 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.service.DummyResponseGenerator;
 import com.service.DummyService;
+import io.vertx.core.AbstractVerticle;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author bhargodev on 01/12/23
  **/
 public class AppModule extends AbstractModule {
-
 
     @Provides
     static DummyDAOLayer provideDAOLayer(MockDBClient mockDBClient) {
@@ -40,4 +44,13 @@ public class AppModule extends AbstractModule {
         return new WebVerticle(service);
     }
 
+    @Provides
+    static List<AbstractVerticle> provideVerticles(WebVerticle webVerticle, DummyResponseGenerator dummyResponseGenerator) {
+        return Arrays.asList(webVerticle, dummyResponseGenerator);
+    }
+
+    @Provides
+    static VerticleRegistry provideVerticleRegistry(WebVerticle webVerticle, DummyResponseGenerator dummyResponseGenerator) {
+        return new VerticleRegistry(Arrays.asList(webVerticle, dummyResponseGenerator));
+    }
 }

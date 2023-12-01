@@ -1,6 +1,5 @@
 package com.dao;
 
-import com.google.inject.Inject;
 import com.model.db.DBModel;
 import io.vertx.core.Future;
 
@@ -8,7 +7,6 @@ public class DummyDAOLayer {
 
     private MockDBClient dbClient;
 
-    @Inject
     public DummyDAOLayer(MockDBClient dbClient) {
         this.dbClient = dbClient;
     }
