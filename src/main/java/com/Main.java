@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         MockDBClient mockDBClient = new MockDBClient();
         DummyDAOLayer dummyDAOLayer = new DummyDAOLayer(mockDBClient);
-        DummyService dummyService = new DummyService();
+        DummyService dummyService = new DummyService(dummyDAOLayer);
         DummyResponseGenerator responseGenerator = new DummyResponseGenerator(dummyDAOLayer);
         WebVerticle webVerticle = new WebVerticle(dummyService);
         Arrays.asList(responseGenerator, webVerticle).forEach(Vertx.vertx()::deployVerticle);

@@ -18,7 +18,7 @@ public class WebVerticle extends AbstractVerticle {
         Router router = Router.router(this.getVertx());
         router.get("/demo").handler(routingContext -> {
            routingContext.pathParams().entrySet().forEach(System.out::println);
-           dummyService.getAsyncAPIResponse(routingContext, this.getVertx());
+           dummyService.getASyncAPIResponseWithoutEB(routingContext, this.getVertx());
         });
         this.getVertx().createHttpServer().requestHandler(router).listen(8081)
                 .onSuccess(handler -> System.out.println("Server started on " + handler.actualPort()));

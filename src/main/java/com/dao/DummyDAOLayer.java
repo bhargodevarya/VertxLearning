@@ -1,7 +1,7 @@
 package com.dao;
 
-import io.vertx.core.Promise;
-import io.vertx.core.eventbus.Message;
+import com.model.db.DBModel;
+import io.vertx.core.Future;
 
 public class DummyDAOLayer {
 
@@ -11,9 +11,9 @@ public class DummyDAOLayer {
         this.dbClient = dbClient;
     }
 
-    public void save(Message<Object> message) {
-        String objectToSave = message.body().toString();
-        Promise<String> DBPromise = this.dbClient.dummyDBSave(objectToSave);
-        DBPromise.future().onComplete(responseFromDB -> message.reply("Object has been saved saved " + responseFromDB.result()));
+    public Future<DBModel> save(String objectToSave) {
+        return this.dbClient.dummyDBSave(objectToSave).
+                onFailure(System.out::println).
+                onComplete(responseFromDB -> System.out.println(responseFromDB.result()));
     }
 }

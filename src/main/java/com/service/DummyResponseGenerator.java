@@ -20,11 +20,18 @@ public class DummyResponseGenerator extends AbstractVerticle {
         consumeEventBus(Constant.SERVICE_ADDRESS, getVertx());
     }
 
+    /**
+     * Consumes messages from a given address and invokes the DAO layer
+     *
+     * Not passing the EventBus Message to DAO layer to avoid coupling.
+     * Unless there is a specific reason, the {@link io.vertx.core.eventbus.Message} should not be passed to layer beyond the consumer
+     * @param address to consume from
+     * @param vertx {@link io.vertx.core.Vertx}
+     */
     public void consumeEventBus(String address, Vertx vertx) {
-        vertx.eventBus().consumer(address, handler -> {
-            String messageFromAPI = handler.body().toString();
-            System.out.println(">>>This is from queue consumer " + messageFromAPI);
-            daoLayer.save(handler);
+        vertx.eventBus().consumer(address, message -> {
+            String messageFromAPI = message.body().toString();
+            daoLayer.save(messageFromAPI).onSuccess(successDBModel -> message.reply(successDBModel.getValue()));
         });
     }
 }
