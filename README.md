@@ -15,6 +15,12 @@ No need for the Main class. Guice logic is put in the BootstrapVerticle mentione
 
 Guice config is initialized from psvm and Launcher Class is used to launch the Vertx application from code
 
+Run from command line
+
+
+java -jar build/libs/VertxLearning-1.0-SNAPSHOT-all.jar run com.BootstrapVerticle
+
+
 
 
 
