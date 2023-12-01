@@ -1,6 +1,7 @@
 package com.service;
 
 import com.dao.DummyDAOLayer;
+import com.google.inject.Inject;
 import com.util.Constant;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
@@ -12,6 +13,7 @@ public class DummyService {
 
     private DummyDAOLayer dao;
 
+    @Inject
     public DummyService(DummyDAOLayer dao) {
         this.dao = dao;
     }

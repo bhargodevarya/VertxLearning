@@ -14,9 +14,8 @@ dependencies {
     implementation("io.vertx:vertx-web-validation:4.4.4")
     implementation("io.vertx:vertx-json-schema:4.4.4")
     implementation 'io.vertx:vertx-rx-java3:4.1.8'
-    // https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos
-    //runtimeOnly 'io.netty:netty-resolver-dns-native-macos:osx-aarch_64'
-    //implementation('io.netty:netty-resolver-dns-native-macos:osx-aarch_64')
+
+    implementation 'com.google.inject:guice:7.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
