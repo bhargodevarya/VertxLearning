@@ -30,6 +30,12 @@ jar {
     }
 }
 
+shadowJar {
+    minimize {
+        exclude(dependency('io.vertx:.*:.*'))
+    }
+}
+
 dependencies {
     implementation("io.vertx:vertx-web:4.4.4")
     implementation("io.vertx:vertx-web-validation:4.4.4")
