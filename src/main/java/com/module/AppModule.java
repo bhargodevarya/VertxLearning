@@ -6,11 +6,13 @@ import com.dao.DummyDAOLayer;
 import com.dao.MockDBClient;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.kafka.KafkaMessenger;
 import com.service.DummyResponseGenerator;
 import com.service.DummyService;
 import io.vertx.core.AbstractVerticle;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -50,7 +52,12 @@ public class AppModule extends AbstractModule {
     }
 
     @Provides
-    static VerticleRegistry provideVerticleRegistry(WebVerticle webVerticle, DummyResponseGenerator dummyResponseGenerator) {
-        return new VerticleRegistry(Arrays.asList(webVerticle, dummyResponseGenerator));
+    static AbstractVerticle provideKafkaMessengerVerticle() {
+        return new KafkaMessenger();
+    }
+
+    @Provides
+    static VerticleRegistry provideVerticleRegistry(WebVerticle webVerticle, DummyResponseGenerator dummyResponseGenerator, KafkaMessenger kafkaMessenger) {
+        return new VerticleRegistry(Arrays.asList(webVerticle, dummyResponseGenerator, kafkaMessenger));
     }
 }

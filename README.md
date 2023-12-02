@@ -17,8 +17,11 @@ Guice config is initialized from psvm and Launcher Class is used to launch the V
 
 Run from command line
 
-
 java -jar build/libs/VertxLearning-1.0-SNAPSHOT-all.jar run com.BootstrapVerticle
+<br></br>
+**Kafka**
+
+docker-compose up -d
 
 
 
