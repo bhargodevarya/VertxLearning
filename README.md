@@ -19,9 +19,11 @@ Run from command line
 
 java -jar build/libs/VertxLearning-1.0-SNAPSHOT-all.jar run com.BootstrapVerticle
 <br></br>
-**Kafka**
+**Kafka and Couchbase**
 
 docker-compose up -d
+
+
 
 
 
